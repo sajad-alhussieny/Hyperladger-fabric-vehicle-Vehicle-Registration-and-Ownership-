@@ -1,0 +1,94 @@
+
+Profiles:
+
+    OrdererGen:
+        Orderer:
+            <<: *OrdererDefaults
+            Organizations:
+                - *Orderer
+        Consortiums:
+            org:
+                Organizations:
+                    - *borders
+                    - *GTD
+                    - *GDC
+                    - *dealers
+
+    OrgChannel:
+        Consortium: org
+        Application:
+            <<: *ApplicationDefaults
+            Organizations:
+                    - *borders
+                    - *GTD
+                    - *GDC
+                    - *dealers
+
+
+Organizations:
+    - &Orderer
+        Name: Orderermsp
+        ID: Orderermsp
+        MSPDir: confy/orderer/carleger.netliy.com/msp
+
+    - &borders
+        Name: bordersmsp
+        ID: bordersmsp
+        MSPDir: confy/peers/borders.carleger.netliy.com/msp
+
+        AnchorPeers:
+            - Host: peer0.borders.carleger.netliy.com
+              Port: 7051
+            - Host: peer1.borders.carleger.netliy.com
+              Port: 7052
+
+    - &GTD
+        Name: GTDmsp
+        ID: GTDmsp
+        MSPDir: confy/peers/GTD.carleger.netliy.com/msp
+
+        AnchorPeers:
+            - Host: peer0.GTD.carleger.netliy.com
+              Port: 7051
+            - Host: peer1.GTD.carleger.netliy.com
+              Port: 7052
+
+    - &GDC
+        Name: GDCmsp
+        ID: GDCmsp
+        MSPDir: confy/peers/GDC.carleger.netliy.com/msp
+
+        AnchorPeers:
+            - Host: peer0.GDC.carleger.netliy.com
+              Port: 7051
+            - Host: peer1.GDC.carleger.netliy.com
+              Port: 7052
+
+    - &dealers
+        Name: dealersmsp
+        ID: dealersmsp
+        MSPDir: confy/peers/dealers.carleger.netliy.com/msp
+
+        AnchorPeers:
+            - Host: peer0.dealers.carleger.netliy.com
+              Port: 7051
+            - Host: peer1.dealers.carleger.netliy.com
+              Port: 7052
+
+Orderer: &OrdererDefaults
+
+    OrdererType: solo
+
+    Addresses:
+        - orderer.carleger.netliy.com:7050
+    BatchTimeout: 2s
+    BatchSize:
+        MaxMessageCount: 10
+        AbsoluteMaxBytes: 99 MB
+        PreferredMaxBytes: 2048 KB
+    Organizations:
+
+
+Application: &ApplicationDefaults
+
+    Organizations:

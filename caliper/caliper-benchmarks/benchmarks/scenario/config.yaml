@@ -1,0 +1,69 @@
+test:
+  workers:
+    type: multi-host
+    number: 8
+  rounds:
+    - label: Create Cit
+      txNumber: 20
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functionse/fabric-v2.2/createCit.js
+    - label: Create CA
+      txNumber: 20
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/createCA.js
+    - label: Create DE
+      txNumber: 10
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/createDE.js
+    - label: Query All
+      txNumber: 5
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/queryAllca.js
+    - label: Query All DE
+      txNumber: 5
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/queryAllDE.js
+    - label: Update CA
+      txNumber: 20
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/updateCA.js
+    - label: Remove CA
+      txNumber: 20
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/removeCA.js
+    - label: Remove DE
+      txNumber: 20
+      rateControl:
+        type: infinity
+        opts:
+          tps: 40
+      workload:
+        module: server/data/functions/fabric-v2.2/removeDE.js

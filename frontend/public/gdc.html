@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>General Directorate of Citizenship</title>
+  <style>
+    .tab {
+      display: none;
+    }
+    .tab.active {
+      display: block;
+    }
+    #citizenList {
+      list-style: none;
+      padding: 0;
+    }
+    #logout {
+      position: fixed;
+      top: 20px; /* Adjust as needed */
+      left: 20px; /* Adjust as needed */
+      z-index: 999; /* Ensure the button appears on top of other content */
+      background-color: rgb(76, 175, 87);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+    #citizenList li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #ccc;
+      padding: 10px 0;
+    }
+
+    #citizenList li:last-child {
+      border-bottom: none;
+    }
+
+    .deleteButton {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 4px;
+      background-color: #f44336;
+      color: #fff;
+      cursor: pointer;
+      font-size: 14px;
+      transition: background-color 0.3s ease;
+    }
+
+    .deleteButton:hover {
+      background-color: #d32f2f;
+    }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f7f3f3;
+      }
+      .container {
+        width: 60%;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      label {
+        display: block;
+        margin-bottom: 8px;
+      }
+      input[type="text"],
+      input[type="date"] {
+        width: calc(100% - 10px);
+        padding: 8px;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+      }
+      input[type="submit"] {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      /* Added styles for the title and buttons wrapper */
+      .title {
+        text-align: center;
+        margin-top: 20px;
+        color: #fff;
+      }
+      .buttons-wrapper {
+        display: flex;
+        justify-content: center;
+        margin-top: 20px;
+        
+      }
+      .buttons-wrapper button {
+        padding: 12px 24px;
+        margin: 0 10px;
+        border: none;
+        border-radius: 4px;
+        background-color: #4CAF50;
+        color: #fff;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+      .buttons-wrapper button:hover {
+        background-color: #45a049;
+      }
+      .top-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 300px; /* Height of the top section with background image */
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), #f7f3f3), url('https://template.canva.com/EAENvp21inc/1/0/1600w-qt_TMRJF4m0.jpg');
+        background-size: cover;
+        background-position: center;
+        z-index: -1; /* Behind the content */
+      }
+  </style>
+</head>
+<body>
+  <div class="top-bg"></div>
+  <div class="title">
+    <h1>General Directorate of Citizenship</h1>
+  </div>
+  
+  <!-- Buttons Wrapper -->
+  <div class="buttons-wrapper">
+    <button  id="defaultOpen">Add Citizen</button>
+    <button id="searchCitizenBtn">Search Citizens</button>
+  </div>
+
+<!-- Add Citizen Tab -->
+<div id="addCitizen" class="tab active">
+  <div class="container">
+    <h2>Add Citizen</h2>
+    <form id="citizenForm">
+      <div class="form-group">
+        <label for="firstName">First Name:</label>
+        <input type="text" id="firstName" name="firstName" required>
+      </div>
+      <div class="form-group">
+        <label for="middleName">Middle Name:</label>
+        <input type="text" id="middleName" name="middleName">
+      </div>
+      <div class="form-group">
+        <label for="lastName">Last Name:</label>
+        <input type="text" id="lastName" name="lastName" required>
+      </div>
+      <div class="form-group">
+        <label for="birthday">Birth Day:</label>
+        <input type="date" id="birthday" name="birthday" required>
+      </div>
+      <div class="form-group">
+        <label for="nationalID">National ID:</label>
+        <input type="text" id="nationalID" name="nationalID" required>
+      </div>
+      <input type="submit" value="Add Citizen">
+      <p id="addMessage"></p>
+    </form>
+  </div>
+</div>
+
+<!-- Search Citizens Tab -->
+<div id="searchCitizen" class="tab">
+  <div class="container">
+    <h2>Search Citizens</h2>
+    <input type="text" id="searchInput" placeholder="Search by name or ID...">
+    <ul id="citizenList"></ul>
+  </div>
+</div>
+<button id="logout">Log out</button>
+<script>
+  const urlParams = new URLSearchParams(window.location.search);
+  const userId = urlParams.get('usr');
+
+  // Check if the usr parameter exists
+  if (!userId) {
+      // Redirect to /index.html if the usr parameter doesn't exist
+      window.location.href = '/index.html';
+  }
+</script>
+<script type="module" src="js/config4.js"></script>
+
+</body>
+</html>

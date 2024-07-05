@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Benchmark</title>
+  <style>
+    /* General Styles */
+    body {
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f0f0f0;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Loading Animation Styles */
+    .loader-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .loader {
+      border: 8px solid #3498db;
+      border-top: 8px solid #f0f0f0;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      animation: spin 2s linear infinite;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    /* Results Page Styles */
+    .results {
+      text-align: center;
+      margin-top: 20px;
+      display: none; /* Hide results initially */
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+    #logout {
+      position: fixed;
+      top: 20px; /* Adjust as needed */
+      left: 20px; /* Adjust as needed */
+      z-index: 999; /* Ensure the button appears on top of other content */
+      background-color: rgb(76, 175, 87);
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Loading Animation -->
+<div class="loader-container" id="loader">
+  <div class="loader"></div>
+  <p id="loading-text">Loading...</p>
+</div>
+
+<!-- Results Page -->
+<div class="results" id="results">
+  <button id="logout">Home</button>
+  <h2>Results</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Succ</th>
+        <th>Fail</th>
+        <th>Send rate(TPS)</th>
+        <th>Max latency</th>
+        <th>Min latency</th>
+        <th>Avg latency</th>
+        <th>Throughput(TPS)</th>
+      </tr>
+
+    </thead>
+    <tbody id="results-table">
+      
+    </tbody>
+  </table><br><br>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>CPU% (max)</th>
+        <th>CPU% (avg)</th>
+        <th>Memory(max)  [MB]</th>
+        <th>Memory(avg)  [MB]</th>
+        <th>Traffic in [KB]</th>
+        <th>Traffic out [KB]</th>
+        <th>Disc Write [KB]</th>
+        <th>Disc Read [KB]</th>
+      </tr>
+
+    </thead>
+    <tbody id="results2-table">
+      
+    </tbody>
+  </table>
+</div>
+
+<script type="module" src="js/conf.js">
+ 
+</script>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+Orderer:
+  - Name: Orderer
+    Domain: orderer.carledger.netliy.com
+    Specs:
+      - Hostname: orderer
+Peers:
+  - Name: borders
+    Domain: borders.carledger.netliy.com
+    Template:
+      Start: 5
+      Hostname: {{.Prefix}}{{.Index}} 
+
+  - Name: GTD
+    Domain: GTD.carledger.netliy.com
+    Template:
+      Start: 5
+      Hostname: {{.Prefix}}{{.Index}} 
+
+  - Name: GDC
+    Domain: GDC.carledger.netliy.com
+    Template:
+      Start: 5
+      Hostname: {{.Prefix}}{{.Index}} 
+
+  - Name: dealers
+    Domain: dealers.carledger.netlify.com
+    Template:
+      Start: 5
+      Hostname: {{.Prefix}}{{.Index}} 
+
